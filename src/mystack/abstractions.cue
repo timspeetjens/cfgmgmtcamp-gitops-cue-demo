@@ -58,4 +58,9 @@ for env, v in j {
 	route: "\(cluster)": "\(stack)": "\(v.namespace)": myapp: spec: {
 		host: v.hostname
 	}
+
+	podDisruptionBudget: "\(cluster)": "\(stack)": "\(v.namespace)": "myapp-maxunavailable": spec: {
+		maxUnavailable: 1
+		selector: matchLabels: app: "myApp"
+	}
 }

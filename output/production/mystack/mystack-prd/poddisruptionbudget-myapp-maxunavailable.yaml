@@ -1,0 +1,8 @@
+---
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: myApp
+kind: PodDisruptionBudget
+apiVersion: policy/v1

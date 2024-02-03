@@ -13,6 +13,7 @@ apiObjectTypes: [
 	deployment,
 	route,
 	service,
+	podDisruptionBudget,
 ]
 
 command: generate: {
