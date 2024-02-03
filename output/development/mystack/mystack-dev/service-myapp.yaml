@@ -1,0 +1,14 @@
+---
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+      name: http
+  selector:
+    app: myapp
+  type: ClusterIP
+metadata:
+  name: myapp
+  namespace: mystack-dev
+kind: Service
+apiVersion: v1

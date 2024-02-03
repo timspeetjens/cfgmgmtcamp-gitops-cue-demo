@@ -1,0 +1,15 @@
+---
+spec:
+  host: myappdev.labs.example.com
+  to:
+    kind: Service
+    name: myapp
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+metadata:
+  name: myapp
+  namespace: mystack-dev
+kind: Route
+apiVersion: route.openshift.io/v1

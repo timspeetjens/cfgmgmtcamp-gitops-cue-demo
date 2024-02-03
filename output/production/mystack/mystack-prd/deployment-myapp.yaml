@@ -1,0 +1,26 @@
+---
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - image: myrepo/myapp-image:1.2.xyz
+          name: myapp
+          volumeMounts:
+            - mountPath: /myAppp/config
+              name: myappconfig
+      volumes:
+        - name: myappconfig
+          configMap:
+            name: myappConfig
+metadata:
+  name: myapp
+  namespace: mystack-prd
+kind: Deployment
+apiVersion: apps/v1

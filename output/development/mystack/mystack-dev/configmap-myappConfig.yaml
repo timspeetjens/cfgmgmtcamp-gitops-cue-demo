@@ -1,0 +1,8 @@
+---
+data:
+  database_host: dev-database.example.com
+metadata:
+  name: myappConfig
+  namespace: mystack-dev
+kind: ConfigMap
+apiVersion: v1
