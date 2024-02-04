@@ -2,7 +2,7 @@
 data:
   database_host: prd-database.example.com
 metadata:
-  name: myappConfig
+  name: myapp-1465a431
   namespace: mystack-prd
 kind: ConfigMap
 apiVersion: v1

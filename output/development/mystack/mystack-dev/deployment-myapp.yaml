@@ -16,7 +16,7 @@ spec:
             - mountPath: /myAppp/config
               name: myappconfig
       volumes:
-        - name: myappconfig
+        - name: myapp-10fc60ef
           configMap:
             name: myappConfig
 metadata:

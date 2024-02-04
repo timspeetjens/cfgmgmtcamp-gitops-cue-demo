@@ -1,5 +1,11 @@
 package demo
 
+import (
+	"strings"
+	"encoding/json"
+	"uuid"
+)
+
 #MyApp: {
 	cluster:   #ClusterName
 	stack:     #StackName
@@ -25,9 +31,18 @@ _myApp: [Cluster=_]: [Stack=_]: [Env=_]: #MyApp & {
 for cluster, i in _myApp
 for stack, j in i
 for env, v in j {
-	configMap: "\(cluster)": "\(stack)": "\(v.namespace)": myappConfig: data: {
+	let configmapData = {
 		database_host: v.database_host
 	}
+
+	let configmapHash = uuid.SHA1( uuid.ns.Nil, json.MarshalStream([configmapData]))
+
+	let configmapName = strings.Join([
+		"myapp",
+		strings.Split( configmapHash, "-")[0],
+	], "-")
+
+	configMap: "\(cluster)": "\(stack)": "\(v.namespace)": "\(configmapName)": data: configmapData
 
 	deployment: "\(cluster)": "\(stack)": "\(v.namespace)": myapp: spec: {
 		replicas: v.replicas
@@ -41,7 +56,7 @@ for env, v in j {
 				}]
 			}]
 			volumes: [{
-				name: "myappconfig"
+				name: configmapName
 				configMap: name: "myappConfig"
 			}]
 		}

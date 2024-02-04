@@ -2,7 +2,7 @@
 data:
   database_host: dev-database.example.com
 metadata:
-  name: myappConfig
+  name: myapp-10fc60ef
   namespace: mystack-dev
 kind: ConfigMap
 apiVersion: v1
