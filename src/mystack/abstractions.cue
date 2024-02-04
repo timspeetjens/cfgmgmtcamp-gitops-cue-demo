@@ -52,6 +52,11 @@ for env, v in j {
 	}
 
 	service: "\(cluster)": "\(stack)": "\(v.namespace)": myapp: spec: {
+		_selectorLabels: {
+			"app.kubernetes.io/name":     "myapp"
+			"app.kubernetes.io/instance": env
+		}
+
 		ports: [{
 			port:       80
 			targetPort: "http"

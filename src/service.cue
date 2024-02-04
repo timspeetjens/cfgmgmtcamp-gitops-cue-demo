@@ -13,7 +13,14 @@ import (
 		namespace: Namespace
 	}
 	spec: {
-		selector: app: Name
+		_selectorLabels?: {[string]: string}
+		if _selectorLabels == _|_ {
+			selector: app: Name
+		}
+		if _selectorLabels != _|_ {
+			selector: _selectorLabels
+		}
+
 		type: *"ClusterIP" | "NodePort"
 	}
 }
