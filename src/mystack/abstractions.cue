@@ -29,13 +29,16 @@ for env, v in j {
 		database_host: v.database_host
 	}
 
+	let selectorLabels = {
+		"app.kubernetes.io/name":     "myapp"
+		"app.kubernetes.io/instance": env
+	}
+
 	deployment: "\(cluster)": "\(stack)": "\(v.namespace)": myapp: spec: {
 		replicas: v.replicas
 		template: spec: {
-			_selectorLabels: {
-				"app.kubernetes.io/name":     "myapp"
-				"app.kubernetes.io/instance": env
-			}
+			_selectorLabels: selectorLabels
+
 			containers: [{
 				image: "\(v.image):\(v.image_tag)"
 				name:  "myapp"
@@ -52,10 +55,7 @@ for env, v in j {
 	}
 
 	service: "\(cluster)": "\(stack)": "\(v.namespace)": myapp: spec: {
-		_selectorLabels: {
-			"app.kubernetes.io/name":     "myapp"
-			"app.kubernetes.io/instance": env
-		}
+		_selectorLabels: selectorLabels
 
 		ports: [{
 			port:       80
