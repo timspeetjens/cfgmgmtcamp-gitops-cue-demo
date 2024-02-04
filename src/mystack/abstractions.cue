@@ -32,6 +32,10 @@ for env, v in j {
 	deployment: "\(cluster)": "\(stack)": "\(v.namespace)": myapp: spec: {
 		replicas: v.replicas
 		template: spec: {
+			_selectorLabels: {
+				"app.kubernetes.io/name":     "myapp"
+				"app.kubernetes.io/instance": env
+			}
 			containers: [{
 				image: "\(v.image):\(v.image_tag)"
 				name:  "myapp"

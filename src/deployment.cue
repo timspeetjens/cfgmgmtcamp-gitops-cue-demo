@@ -17,6 +17,10 @@ import (
 			selector: matchLabels: app: Name
 			template: metadata: labels: app: Name
 		}
+		if _selectorLabels != _|_ {
+			selector: matchLabels: _selectorLabels
+			template: metadata: labels: _selectorLabels
+		}
 	}
 }
 
