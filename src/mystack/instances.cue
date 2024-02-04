@@ -7,7 +7,7 @@ _myApp: development: mystack: dev: {
 
 	hostname: "myappdev.labs.example.com"
 
-	database_host: "dev-database.example.com"
+	database_host: "dev-database.lab.example.com"
 }
 
 _myApp: production: mystack: prd: {
