@@ -12,8 +12,11 @@ import (
 		namespace: Namespace
 	}
 	spec: {
-		selector: matchLabels: app: Name
-		template: metadata: labels: app: Name
+		_selectorLabels?: {[string]: string}
+		if _selectorLabels == _|_ {
+			selector: matchLabels: app: Name
+			template: metadata: labels: app: Name
+		}
 	}
 }
 
